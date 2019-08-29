@@ -1,0 +1,77 @@
+﻿<Metro:MetroWindow x:Class="MoneyStat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MoneyStat"
+        mc:Ignorable="d"
+        Title="Money stats" Height="450" Width="300" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="BorderStyle" TargetType="Border">
+            <Style.Setters>
+                <Setter Property="Background" Value="{Binding BalanceBorderColor}"></Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Gray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="GreenTextBlockStyle" TargetType="TextBlock">
+            <Style.Setters>
+                <Setter Property="Foreground" Value="Green"/>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Gray"/>
+                </Trigger>
+            </Style.Triggers>
+         </Style>
+        <Style x:Key="RedTextBlockStyle" TargetType="TextBlock">
+            <Style.Setters>
+                <Setter Property="Foreground" Value="Red"/>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Gray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Add category" Click="AddCategoryClick"/>
+        </Menu>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource GreenTextBlockStyle}" Name="ProfitTextBlock" Text="{Binding Profit,StringFormat={}{0:f2} grn}" HorizontalAlignment="Center" FontSize="25"/>
+            <TextBlock Style="{StaticResource RedTextBlockStyle}" Name="SpendingTextBlock" Text="{Binding Spending,StringFormat={}{0:f2} grn}" HorizontalAlignment="Center" FontSize="25"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <Border Style="{StaticResource BorderStyle}"  Width="145"  Height="30" CornerRadius="10">
+                <TextBlock Name="BalanceTextBlock" FontWeight="Bold" Text="{Binding Balance,StringFormat={} Balance {0:f2} grn}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Click="AddProfitClick" Grid.Column="0" Width="100" Height="60" Margin="5" >
+                    <TextBlock Text="+" FontSize="55" HorizontalAlignment="Center" Foreground="Green" VerticalAlignment="Center" Height="85"/>
+                </Button>
+                <Button Click="AddSpendingClick" Grid.Column="1" Width="100" Height="60" Margin="5">
+                    <TextBlock Text="-" FontSize="55" HorizontalAlignment="Center" Foreground="Red" VerticalAlignment="Center" Height="85"/>
+                </Button>
+            </Grid>
+   
+        </StackPanel>
+    </Grid>
+</Metro:MetroWindow>

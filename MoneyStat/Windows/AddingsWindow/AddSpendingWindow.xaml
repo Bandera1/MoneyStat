@@ -1,0 +1,20 @@
+﻿<Metro:MetroWindow x:Class="MoneyStat.Windows.AddSpendingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MoneyStat.Windows"
+        mc:Ignorable="d"
+        Title="Add spending" Height="390" Width="400" ResizeMode="NoResize">
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Center" Margin="10" Text="New spending" FontSize="25"/>
+        <TextBlock HorizontalAlignment="Center" Margin="5" Text="Category" FontSize="17"/>
+        <ComboBox Name="CategoryComboBox" SelectedItem="{Binding Category}" HorizontalAlignment="Center" Width="150" Margin="3"/>
+        <TextBlock HorizontalAlignment="Center" Margin="5" Text="Money" FontSize="17"/>
+        <Metro:NumericUpDown HasDecimals="True" StringFormat="{}{0:N2} grn" Value="{Binding MoneyValue}" Width="150"/>
+        <TextBlock HorizontalAlignment="Center" Margin="5" Text="Description" FontSize="17"/>
+        <TextBox HorizontalAlignment="Center" Text="{Binding Description}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Width="200" Height="75"/>
+        <Button HorizontalAlignment="Center" Click="AddSpending" Width="250" Height="40" Content="Add spending" FontSize="17" Margin="20"/>
+    </StackPanel>
+</Metro:MetroWindow>
