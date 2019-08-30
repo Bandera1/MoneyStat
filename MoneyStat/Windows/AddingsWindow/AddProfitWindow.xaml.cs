@@ -1,4 +1,7 @@
 ﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using MoneyStat.DatabaseServices;
+using MoneyStat.EnititiesClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,19 +24,45 @@ namespace MoneyStat.Windows
     /// </summary>
     public partial class AddProfitWindow : MetroWindow
     {
-        //public Category Category { get; set; }
-        public float MoneyValue { get; set; }
-        public string Description { get; set; }
+        public ProfitsAndSpendings NewMoneyNode { get; set; }
+        private Types NodeType = new Types();
+
+        private ProfitsAndSpendingsService Service = new ProfitsAndSpendingsService();
 
         public AddProfitWindow()
         {
             InitializeComponent();
+
             this.DataContext = this;
+
+            NodeType.Name = "Profit";
+            NewMoneyNode = new ProfitsAndSpendings();
+
+
+            var categories = Service.GetCategories();
+            CategoryComboBox.ItemsSource = categories;
+            
+            if (categories[0] != null)
+            {
+                CategoryComboBox.SelectedItem = categories[0];
+            }
+                     
         }
 
         public void AddProfit()
         {
+            NewMoneyNode.Category = CategoryComboBox.SelectedItem as Categories;
+            NewMoneyNode.Type = NodeType;
 
+            if(NewMoneyNode.Category.Name == null)
+            {
+                this.ShowMessageAsync("Error", "Category can`t be empty.", MessageDialogStyle.Affirmative);
+                return;
+            }
+
+            NewMoneyNode.Date = DateTime.Now;
+
+            this.ShowMessageAsync("Success", "New profit added.", MessageDialogStyle.Affirmative);
         }
 
         private void AddProfit_Click(object sender, RoutedEventArgs e)

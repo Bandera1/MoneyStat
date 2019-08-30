@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using MoneyStat.EnititiesClasses;
 using MoneyStat.Windows;
 using System;
 using System.Collections.Generic;
@@ -47,7 +48,7 @@ namespace MoneyStat
         public MainWindow()
         {
             InitializeComponent();
-
+          
             BalanceBorderColor = new SolidColorBrush(Colors.LightGreen);
 
             Profit = 0;

@@ -10,11 +10,17 @@
     <StackPanel>
         <TextBlock HorizontalAlignment="Center" Margin="10" Text="New profit" FontSize="25"/>
         <TextBlock HorizontalAlignment="Center" Margin="5" Text="Category" FontSize="17"/>
-        <ComboBox Name="CategoryComboBox" SelectedItem="{Binding Category}" HorizontalAlignment="Center" Width="150" Margin="3"/>
+        <ComboBox Name="CategoryComboBox" HorizontalAlignment="Center" Width="150" Margin="3">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <TextBlock HorizontalAlignment="Center" Margin="5" Text="Money" FontSize="17"/>
-        <Metro:NumericUpDown HasDecimals="True" StringFormat="{}{0:N2} grn" Value="{Binding MoneyValue}" Width="150"/>
+        <Metro:NumericUpDown HasDecimals="True" StringFormat="{}{0:N2} grn" Value="{Binding NewMoneyNode.Value}" Width="150"/>
         <TextBlock HorizontalAlignment="Center" Margin="5" Text="Description" FontSize="17"/>
-        <TextBox HorizontalAlignment="Center" Text="{Binding Description}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Width="200" Height="75"/>
+        <TextBox HorizontalAlignment="Center" Text="{Binding NewMoneyNode.Description}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Width="200" Height="75"/>
         <Button HorizontalAlignment="Center" Click="AddProfit_Click" Width="250" Height="40" Content="Add profit" FontSize="17" Margin="20"/>
     </StackPanel>
 </Metro:MetroWindow>

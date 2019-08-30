@@ -10,7 +10,7 @@
     <StackPanel>
         <TextBlock HorizontalAlignment="Center" Text="Add category" FontSize="22" Margin="10"/>
         <TextBlock Text="Category name" HorizontalAlignment="Center"/>
-        <TextBox HorizontalAlignment="Center" Width="170" Text="{Binding CategoryName}" Margin="10"/>
+        <TextBox HorizontalAlignment="Center" Width="170" Text="{Binding NewCategory.Name}" Margin="10"/>
         <Button Margin="10" Width="260" Click="AddCategory" Content="Add category" FontSize="12"/>
     </StackPanel>
 </Metro:MetroWindow>

@@ -73,7 +73,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DatabaseContext.cs" />
+    <Compile Include="DatabaseContext\DatabaseContext.cs" />
+    <Compile Include="DatabaseServices\ProfitsAndSpendingsService.cs" />
+    <Compile Include="EnititiesClasses\Categories.cs" />
+    <Compile Include="EnititiesClasses\ProfitsAndSpendings.cs" />
+    <Compile Include="EnititiesClasses\Types.cs" />
     <Compile Include="Windows\AddingsWindow\AddCategoryWindow.xaml.cs">
       <DependentUpon>AddCategoryWindow.xaml</DependentUpon>
     </Compile>
@@ -156,8 +160,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EnititiesClasses\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
