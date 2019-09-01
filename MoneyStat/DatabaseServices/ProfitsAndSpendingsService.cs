@@ -12,6 +12,8 @@ namespace MoneyStat.DatabaseServices
     {
         DatabaseContext db = new DatabaseContext();
 
+
+
         public List<ProfitsAndSpendings> GetAllMoneyNodes(Func<ProfitsAndSpendings, object> SortKey,string Type = null)
         {
             if (Type != null)
@@ -52,6 +54,16 @@ namespace MoneyStat.DatabaseServices
         public List<Categories> GetCategories()
         {
             return db.Categories.AsNoTracking().ToList();
+        }
+
+        public Types GetMoneyNodeType(string TypeName)
+        {        
+            return db.Types.FirstOrDefault(x => x.Name == TypeName);
+        }
+
+        public float GetMoneyNodeValue(string TypeName)
+        {
+            return db.ProfitsAndSpendings.ToList().Where(x => x.Type.Name == TypeName).Select(x => x.Value).Sum();
         }
     }
 }

@@ -25,23 +25,20 @@ namespace MoneyStat.Windows
     public partial class AddProfitWindow : MetroWindow
     {
         public ProfitsAndSpendings NewMoneyNode { get; set; }
-        private Types NodeType = new Types();
-
         private ProfitsAndSpendingsService Service = new ProfitsAndSpendingsService();
+
 
         public AddProfitWindow()
         {
             InitializeComponent();
-
             this.DataContext = this;
 
-            NodeType.Name = "Profit";
+
             NewMoneyNode = new ProfitsAndSpendings();
 
 
             var categories = Service.GetCategories();
-            CategoryComboBox.ItemsSource = categories;
-            
+            CategoryComboBox.ItemsSource = categories;          
             if (categories[0] != null)
             {
                 CategoryComboBox.SelectedItem = categories[0];
@@ -52,7 +49,7 @@ namespace MoneyStat.Windows
         public void AddProfit()
         {
             NewMoneyNode.Category = CategoryComboBox.SelectedItem as Categories;
-            NewMoneyNode.Type = NodeType;
+            NewMoneyNode.Type = Service.GetMoneyNodeType("Profit");
 
             if(NewMoneyNode.Category.Name == null)
             {
@@ -62,6 +59,7 @@ namespace MoneyStat.Windows
 
             NewMoneyNode.Date = DateTime.Now;
 
+            Service.AddNewMoneyNode(NewMoneyNode);
             this.ShowMessageAsync("Success", "New profit added.", MessageDialogStyle.Affirmative);
         }
 
